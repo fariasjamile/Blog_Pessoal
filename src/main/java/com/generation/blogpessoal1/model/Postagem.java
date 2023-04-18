@@ -1,4 +1,4 @@
- package com.generation.blogpessoal1.model;
+ package com.generation.blogpessoal1.model; //faz interção e modela dados 
  
 import java.time.LocalDateTime;
 
@@ -16,11 +16,11 @@ import jakarta.validation.constraints.Size;
 @Table(name = "tb_postagens") /*CREATE TABLE tb_postagens*/
 public class Postagem {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // o atributo pra definir primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto incremento
     private Long id;
     
-    @NotBlank(message = "O atributo ttítulo é obrigatório!")
+    @NotBlank(message = "O atributo ttítulo é obrigatório!") // notblank impede espaço em branco,exclusivo para string
     @Size(min = 5, max = 100, message = "O atributo título deve ter no mínimo 05 e no máximo 100 caracteres.")
     private String titulo;
     
@@ -28,7 +28,7 @@ public class Postagem {
     @Size(min = 10, max = 1000, message = "O atributo texto deve ter no mínimo 10 e no máximo 1000 caracteres.")
     private String texto;
     
-    @UpdateTimestamp
+    @UpdateTimestamp //funçao pra hora está sempre atualizada
     private LocalDateTime data;
 
     public Long getId() {

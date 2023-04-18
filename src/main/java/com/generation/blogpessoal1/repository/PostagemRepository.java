@@ -1,4 +1,4 @@
-package com.generation.blogpessoal1.repository;
+package com.generation.blogpessoal1.repository; // é uma interface de consulta 
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import com.generation.blogpessoal1.model.Postagem;
 
 @Repository
 public interface PostagemRepository  extends JpaRepository<Postagem, Long>{
-	List<Postagem> findAllByTituloContainingIgnoreCase(@Param("titulo")String titulo);
-
+	List<Postagem> findAllByTituloContainingIgnoreCase(@Param("titulo")String titulo); //definir metodo de consulta / paremetro titulo , do tipo string guardaado na variavel titulo
+   // select * from tb_postagens WHERE titulo like "%titulo%";
 
 }
