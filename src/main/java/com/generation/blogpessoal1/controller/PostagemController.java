@@ -62,7 +62,6 @@ public class PostagemController {
 				.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(postagemRepository.save(postagem)))
 				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
-	
 	@PutMapping
 	public ResponseEntity<Postagem> put(@Valid @RequestBody Postagem postagem){
 		// UPDATE tb_postagens SET titulo = "???", texto = "???", data = "???" WHERE id = ?

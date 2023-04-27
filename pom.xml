@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.4</version>
+		<version>3.0.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.generation</groupId>
-	<artifactId>blogpessoal1</artifactId>
+	<artifactId>blogpessoal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>blogpessoal1</name>
-	<description>Projeto Blog Pessoal 1</description>
+	<name>blogpessoal</name>
+	<description>Projeto Blog Pessoal</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -29,25 +29,43 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<!--Depedenci SPRING SECURITY-->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
+   			<groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+       </dependency>
+	       <dependency>
+		<groupId>io.jsonwebtoken</groupId>
+		<artifactId>jjwt-api</artifactId>
+		<version>0.11.5</version>
+	       </dependency>
+		   <dependency>
+		<groupId>io.jsonwebtoken</groupId>
+		<artifactId>jjwt-impl</artifactId>
+		<version>0.11.5</version>
+	      </dependency>
+	      <dependency>
+		<groupId>io.jsonwebtoken</groupId>
+		<artifactId>jjwt-jackson</artifactId>
+		<version>0.11.5</version>
+	      </dependency>
+	      <dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-devtools</artifactId>
+				<scope>runtime</scope>
+				<optional>true</optional>
+			</dependency>
+			<dependency>
+				<groupId>com.mysql</groupId>
+				<artifactId>mysql-connector-j</artifactId>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
 	<build>
 		<plugins>
 			<plugin>
