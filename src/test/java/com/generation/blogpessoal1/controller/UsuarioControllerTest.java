@@ -150,12 +150,12 @@ public class UsuarioControllerTest {
 
 		usuarioService.cadastrarUsuario(new Usuario(0L, 
 			"Marisa Souza", "marisa_souza@email.com.br", "13465278", "-"));
-
-		HttpEntity<UsuarioLogin> corpoRequisicao = new HttpEntity<UsuarioLogin>(new UsuarioLogin(0L, 
-			"", "marisa_souza@email.com.br", "13465278", "", ""));
-
+		
+		UsuarioLogin usuarioLogin = new UsuarioLogin("marisa_souza@email.com.br", "13465278");
+		
+		HttpEntity<Optional<UsuarioLogin>> corpoRequisicao = new HttpEntity<Optional<UsuarioLogin>>(Optional.of(usuarioLogin));
 		ResponseEntity<UsuarioLogin> corpoResposta = testRestTemplate
-			.exchange("/usuarios/logar", HttpMethod.POST, corpoRequisicao, UsuarioLogin.class);
+				.exchange("/usuarios/logar", HttpMethod.POST, corpoRequisicao, UsuarioLogin.class);
 
 		assertEquals(HttpStatus.OK, corpoResposta.getStatusCode());
 
