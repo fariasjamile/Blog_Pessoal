@@ -9,12 +9,13 @@ public class UsuarioLogin {
 	private String foto;
 	private String token;
 
-	public UsuarioLogin(long l, String string, String string2, String string3, String string4, String string5) {
+	public UsuarioLogin(String usuario, String senha) {
+		this.usuario = usuario;
+		this.senha = senha;
 	}
+	
+	public UsuarioLogin() {}
 
-	public Long getId() {
-		return this.id;
-	}
 
 	public void setId(Long id) {
 		this.id = id;
