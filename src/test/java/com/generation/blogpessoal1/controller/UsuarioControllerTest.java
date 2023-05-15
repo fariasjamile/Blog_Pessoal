@@ -94,6 +94,22 @@ public class UsuarioControllerTest {
 		assertEquals(HttpStatus.OK, corpoResposta.getStatusCode());
 		
 	}
+	
+	@Test
+	@DisplayName("Não deve permitir atualizar o e-mail do Usuário para um já existente que não seja próprio")
+	public void naoDevePermitirAtualizarUsuarioDuplicado() {
+		usuarioService.cadastrarUsuario(new Usuario(0L, "Beatriz", "beatriz@email.com", "12345678", "-"));
+		Optional<Usuario> usuarioCadastrado2 = usuarioService.cadastrarUsuario(new Usuario(0L, "Ana", "ana@email.com", "12345678", "-"));
+		
+		HttpEntity<Usuario> corpoRequisicao = new HttpEntity<Usuario>(new Usuario(usuarioCadastrado2.get().getId(), "Ana", "beatriz@email.com", "12345678", "-"));
+		ResponseEntity<Usuario> corpoResposta = testRestTemplate
+				.withBasicAuth("root@root.com", "rootroot")
+				.exchange("/usuarios/atualizar", HttpMethod.PUT, corpoRequisicao, Usuario.class);
+		
+		assertEquals(HttpStatus.BAD_REQUEST, corpoResposta.getStatusCode());
+	}
+	
+	
 
 	@Test
 	@DisplayName("Listar todos os Usuários")
@@ -134,12 +150,12 @@ public class UsuarioControllerTest {
 
 		usuarioService.cadastrarUsuario(new Usuario(0L, 
 			"Marisa Souza", "marisa_souza@email.com.br", "13465278", "-"));
-
-		HttpEntity<UsuarioLogin> corpoRequisicao = new HttpEntity<UsuarioLogin>(new UsuarioLogin(0L, 
-			"", "marisa_souza@email.com.br", "13465278", "", ""));
-
+		
+		UsuarioLogin usuarioLogin = new UsuarioLogin("marisa_souza@email.com.br", "13465278");
+		
+		HttpEntity<Optional<UsuarioLogin>> corpoRequisicao = new HttpEntity<Optional<UsuarioLogin>>(Optional.of(usuarioLogin));
 		ResponseEntity<UsuarioLogin> corpoResposta = testRestTemplate
-			.exchange("/usuarios/logar", HttpMethod.POST, corpoRequisicao, UsuarioLogin.class);
+				.exchange("/usuarios/logar", HttpMethod.POST, corpoRequisicao, UsuarioLogin.class);
 
 		assertEquals(HttpStatus.OK, corpoResposta.getStatusCode());
 

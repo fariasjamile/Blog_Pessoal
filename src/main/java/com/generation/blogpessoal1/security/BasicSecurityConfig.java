@@ -53,10 +53,10 @@ public class BasicSecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-                .sessionManagement(management -> management
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                		.csrf().disable()
-                		.cors();
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().csrf().disable()
+                .cors();
 
         http
                 .authorizeHttpRequests((auth) -> auth
