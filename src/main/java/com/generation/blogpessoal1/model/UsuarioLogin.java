@@ -9,12 +9,23 @@ public class UsuarioLogin {
 	private String foto;
 	private String token;
 
-	public UsuarioLogin(String usuario, String senha) {
+	public UsuarioLogin(Long id, String nome, String usuario, String senha, String foto, String token) {
+		super();
+		this.id = id;
+		this.nome = nome;
 		this.usuario = usuario;
 		this.senha = senha;
+		this.foto = foto;
+		this.token = token;
 	}
 	
-	public UsuarioLogin() {}
+	public UsuarioLogin() {
+		
+	}
+
+	public Long getId() {
+		return this.id;
+	}
 
 
 	public void setId(Long id) {

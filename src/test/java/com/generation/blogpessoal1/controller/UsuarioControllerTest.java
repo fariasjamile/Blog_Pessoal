@@ -151,13 +151,13 @@ public class UsuarioControllerTest {
 		usuarioService.cadastrarUsuario(new Usuario(0L, 
 			"Marisa Souza", "marisa_souza@email.com.br", "13465278", "-"));
 		
-		UsuarioLogin usuarioLogin = new UsuarioLogin("marisa_souza@email.com.br", "13465278");
-		
-		HttpEntity<Optional<UsuarioLogin>> corpoRequisicao = new HttpEntity<Optional<UsuarioLogin>>(Optional.of(usuarioLogin));
-		ResponseEntity<UsuarioLogin> corpoResposta = testRestTemplate
-				.exchange("/usuarios/logar", HttpMethod.POST, corpoRequisicao, UsuarioLogin.class);
+		 //importar a model UsuarioLogin
+		 HttpEntity<UsuarioLogin> loginUser = new HttpEntity<UsuarioLogin>(new UsuarioLogin(0L,
+		 "", "marisa_souza@email.com.br", "13465278", "-", ""));//cadastrar user
 
-		assertEquals(HttpStatus.OK, corpoResposta.getStatusCode());
+ ResponseEntity<UsuarioLogin> resposta = testRestTemplate
+		 .exchange("/usuarios/logar", HttpMethod.POST, loginUser, UsuarioLogin.class);
+	 assertEquals(HttpStatus.OK, resposta.getStatusCode());// se autenticacao teve exito, mostrar status
 
 	}
 }
